@@ -1,13 +1,12 @@
 <template>
-  <div class="vehicle-comp">
-
+  <div class="vehicle-comp" v-bind:class="{active: isActive}">
     <div class="circle-column">
       <div class="circle" :style="{ 'background-color': circleColor}"></div>
     </div>
 
     <div class="text-column">
-      <span class="car">{{ car }}</span>
-      <span class="driver">{{ driver }}</span>
+      <span class="car">{{ vehicle.name }}</span>
+      <span class="driver">{{ vehicle.user }}</span>
     </div>
   </div>
 </template>
@@ -15,17 +14,24 @@
   export default {
     name: 'vehicle-info',
     props: {
-      car: {
-        type: String,
-        default: 'Vehicle'
-      },
-      driver: {
-        type: String,
-        default: 'Name'
+      vehicle: {
+        type: Object,
+        default: {}
       },
       circleColor: {
         type: String,
         default: '#dd4b4b'
+      },
+      activeId: {
+        type: Number,
+        default: 0
+      }
+    },
+    computed: {
+      isActive: function() {
+        console.log(this.activeId)
+        console.log(this.vehicle.id)
+        return this.activeId === this.vehicle.id;
       }
     }
   }
@@ -34,8 +40,8 @@
   .vehicle-comp {
     display: flex;
     flex-direction: row;
-    font-size: 24px;
-    margin: 3rem 0;
+    font-size: 16px;
+    margin: 1rem 0;
   }
 
   .circle {
@@ -62,11 +68,25 @@
 
   .car {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .driver {
     font-weight: lighter;
-    font-size: 16px;
+    font-size: 14px;
+  }
+
+  .active {
+    border: black solid 4px;
+    padding: 16px;
+    font-size: 24px;
+  }
+
+  .active .car {
+    font-size: 24px;
+  }
+
+  .active .driver {
+    font-size: 20px;
   }
 </style>
