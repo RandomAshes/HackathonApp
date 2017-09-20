@@ -132,7 +132,14 @@
 </script>
 <style scoped>
   .map {
-    height: 70vw;
-    width: 70vw;
+    height: 100vh;
+    width: 65vw;
+  }
+
+  @media screen and (max-width: 53.125rem) {
+    .map {
+      height: 100vh;
+      width: 100vw;
+    }
   }
 </style>
