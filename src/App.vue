@@ -5,6 +5,17 @@
 
       <img class="logo" src="./assets/DWMC.svg">
 
+      <div class="vehicles">
+
+        <vehicle-info
+          v-for="(vehicle, i) in vehicles"
+          :circleColor="carColors[i]"
+          :car="vehicle.name"
+          :driver="vehicle.user">
+        </vehicle-info>
+
+      </div>
+
     </div>
   </div>
 </template>
@@ -12,9 +23,11 @@
 <script>
   import DWMCMap from './components/MapComponent.vue'
   import Data from './lib/data'
+  import VehicleInfo from "./components/VehicleInfoComponent.vue";
   export default {
     name: 'app',
     components: {
+      VehicleInfo,
       'dwmc-map': DWMCMap
     },
     data: function() {
@@ -40,6 +53,12 @@
             type: 'HFE',
             user: 'Track Testers Digital'
           }
+        ],
+        carColors: [
+          '#444444',
+          '#dd4b4b',
+          '#a6e726',
+          '#f0c517'
         ]
       }
     },
@@ -73,7 +92,7 @@
   body {
     padding: 0;
     margin: 0;
-    background-color: gainsboro;
+    background-color: #666;
   }
 
   #app {
@@ -85,6 +104,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .map-container {
+    border-right: .5rem solid #0083b3;
   }
 
   h1,
@@ -109,15 +132,17 @@
 
   .info-bar {
     color: white;
-    background-color: rgb(102,102,102);
     width: 100%;
-    height: 70vw;
+    height: 100%;
     padding: 3rem;
-    border-left: .5rem solid rgb(19,131,179);
   }
 
   .logo {
     width: 100%;
+  }
+
+  .vehicles {
+    margin-top: 6rem;
   }
 
 </style>
