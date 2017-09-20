@@ -10,8 +10,9 @@
         <vehicle-info
           v-for="(vehicle, i) in vehicles"
           :circleColor="carColors[i]"
-          :car="vehicle.name"
-          :driver="vehicle.user">
+          :vehicle="vehicle"
+          :activeId="activeId"
+        >
         </vehicle-info>
 
       </div>
@@ -34,21 +35,25 @@
       return {
         vehicles: [
           {
+            id: 1,
             name: 'VLST-P-2018 Mercedes-Benz C300 Cabriolet 10Best',
             type: 'Test Track Vehicle',
             user: 'Track Testers Digital'
           },
           {
+            id: 2,
             name: 'VLST-P-2017 Chevrolet Camaro V6 6MT 1LE Coupe',
             type: 'Test Track Vehicle',
             user: 'Track Testers Digital'
           },
           {
+            id: 3,
             name: 'VLST-P-2018 Honda Fit Sport 6MT 10Best',
             type: 'Lift-over / Step-in Height',
             user: 'Zeb Sadiq'
           },
           {
+            id: 4,
             name: 'VLST-D-2017 Mercedes-AMG E63 Sedan 4Matict',
             type: 'HFE',
             user: 'Track Testers Digital'
@@ -59,7 +64,8 @@
           '#dd4b4b',
           '#a6e726',
           '#f0c517'
-        ]
+        ],
+        activeId: 4
       }
     },
     methods: {
