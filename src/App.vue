@@ -6,16 +6,17 @@
       <img class="logo" src="./assets/DWMC.svg">
 
       <div class="vehicles">
+        <div class="locations">
 
+        </div>
+        <h2>{{locations[activeLocation].name}}</h2>
         <vehicle-info
-          v-for="(vehicle, i) in vehicles"
+          v-for="(vehicle, i) in vehiclesInActiveLocation"
           :circleColor="carColors[i]"
           :vehicle="vehicle"
-          :activeId="activeId">
+          :activeId="activeIndex == i">
         </vehicle-info>
-
       </div>
-
     </div>
   </div>
 </template>
@@ -64,7 +65,34 @@
           '#a6e726',
           '#f0c517'
         ],
-        activeId: 4
+        activeId: 4,
+        activeLocation: 2,
+        locations: [
+          {
+            place: 'ann-arbor',
+            name: 'Car and Driver HQ - Ann Arbor, MI',
+            types: ['Lift-over / Step-in Height']
+          },
+          {
+            place: 'i-94',
+            name: 'I-94 Fuel Economy Tests',
+            types: ['HFE']
+          },
+          {
+            place: 'chelsea-proving-grounds',
+            name: 'Chrysler Proving Grounds Test',
+            types: ['Test Track Vehicle']
+          }
+        ]
+      }
+    },
+    computed: {
+      vehiclesInActiveLocation() {
+        return this.vehicles.filter((vehicle) => {
+          if (this.locations[this.activeLocation].types.indexOf(vehicle.type) > -1) {
+            return true;
+          }
+        });
       }
     },
     methods: {
@@ -85,10 +113,21 @@
         .then((data) => {
           console.log(data)
         })
+      },
+      changeActiveLocation() {
+        if (this.activeLocation >= this.locations.length) {
+          this.activeLocation = 0;
+          return;
+        }
+
+        this.activeLocation++;
       }
     },
     created() {
       this.queryChromeTrim('Venture')
+    },
+    mounted() {
+
     }
   }
 </script>
