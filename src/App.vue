@@ -11,8 +11,7 @@
           v-for="(vehicle, i) in vehicles"
           :circleColor="carColors[i]"
           :vehicle="vehicle"
-          :activeId="activeId"
-        >
+          :activeId="activeId">
         </vehicle-info>
 
       </div>
@@ -112,6 +111,21 @@
     justify-content: space-between;
   }
 
+  .info-bar {
+    color: white;
+    width: auto;
+    height: 100%;
+    padding: 3rem;
+  }
+
+  .logo {
+    width: 100%;
+  }
+
+  .vehicles {
+    margin-top: 6rem;
+  }
+
   .map-container {
     border-right: .5rem solid #0083b3;
   }
@@ -136,19 +150,25 @@
     color: #42b983;
   }
 
-  .info-bar {
-    color: white;
-    width: 100%;
-    height: 100%;
-    padding: 3rem;
-  }
+  @media screen and (max-width: 53.125rem) {
+    #app {
+      flex-direction: column-reverse;
+    }
 
-  .logo {
-    width: 100%;
-  }
+    .logo {
+      width: 25%;
+      margin-right: 3rem;
+    }
 
-  .vehicles {
-    margin-top: 6rem;
-  }
+    .info-bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 1rem;
+    }
 
+    .vehicles {
+      margin: 0;
+    }
+  }
 </style>
