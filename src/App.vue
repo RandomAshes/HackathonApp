@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <dwmc-map :currentLocation="locations[activeLocation].place" />
+    <dwmc-map :currentLocation="locations[activeLocation]" />
     <div class="info-bar">
 
       <img class="logo" src="./assets/DWMC.svg">
@@ -78,16 +78,19 @@
             place: 'cdOffice',
             name: 'Car and Driver HQ - Ann Arbor, MI',
             types: ['Lift-over / Step-in Height'],
+            zoomLevel: 18
           },
           {
             place: 'hfe',
             name: 'I-94 Fuel Economy Tests',
-            types: ['HFE']
+            types: ['HFE'],
+            zoomLevel: 10
           },
           {
             place: 'provingGrounds',
             name: 'Chrysler Proving Grounds Test',
-            types: ['Test Track Vehicle']
+            types: ['Test Track Vehicle'],
+            zoomLevel: 14
           }
         ]
       }

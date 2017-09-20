@@ -1,6 +1,6 @@
 <template>
   <div class="map-container">
-    <gmap-map class="map" :center="coordinates[currentLocation]" :zoom="currentZoom" :options="{styles: styles}" >
+    <gmap-map class="map" :center="coordinates[currentLocation.place]" :zoom="currentLocation.zoomLevel" :options="{styles: styles}" >
 
       <gmap-marker
         :key="index"
@@ -47,8 +47,11 @@
     },
     props: {
       currentLocation: {
-        type: String,
-        default: ''
+        type: Object,
+        default: {
+          place: 'cdOffice',
+          zoomLevel: 10
+        }
       }
     },
     data() {
@@ -249,7 +252,6 @@
 
       return {
         coordinates: coordinates,
-        center: coordinates.cdOffice,
         markers: [
           {position: coordinates.cdOffice},
           {position: coordinates.hfe},
@@ -345,16 +347,10 @@
 					}
 				]
 			}
-		],
-        currentZoom: 10
+		]
       }
     },
-    computed: {
-      currentZoom() {
-        return (this.currentLocation === 'hfe')
-          ? 10 : 10;
-      }
-    }
+    computed: {}
   }
 </script>
 <style scoped>
