@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <dwmc-map :currentLocation="locations[activeLocation]" />
+    <dwmc-map :currentLocation="locations[activeLocation]" :vehicles="vehicles" />
     <div class="info-bar">
 
       <img class="logo" src="./assets/DWMC.svg">
@@ -12,7 +12,8 @@
         <h2>{{locations[activeLocation].name}}</h2>
         <vehicle-info
           v-for="(vehicle, i) in vehiclesInActiveLocation"
-          :circleColor="carColors[i]"
+          :key="vehicle.id"
+          :circleColor="vehicle.iconColor"
           :vehicle="vehicle">
         </vehicle-info>
       </div>
@@ -34,6 +35,11 @@
       'dwmc-map': DWMCMap
     },
     data: function() {
+     const black = '#444444'
+     const red = '#dd4b4b'
+     const green = '#a6e726'
+     const yellow = '#f0c517'
+
       return {
         vehicles: [
           {
@@ -41,35 +47,37 @@
             name: 'VLST-P-2018 Mercedes-Benz C300 Cabriolet 10Best',
             type: 'Test Track Vehicle',
             user: 'Track Testers Digital',
-            location: 'provingGrounds'
+            location: 'provingGrounds',
+            iconColor: black,
+            offset: '100%'
           },
           {
             id: 2,
             name: 'VLST-P-2017 Chevrolet Camaro V6 6MT 1LE Coupe',
             type: 'Test Track Vehicle',
             user: 'Track Testers Digital',
-            location: 'provingGrounds'
+            location: 'provingGrounds',
+            iconColor: green,
+            offset: '50%'
           },
           {
             id: 3,
             name: 'VLST-P-2018 Honda Fit Sport 6MT 10Best',
             type: 'Lift-over / Step-in Height',
             user: 'Zeb Sadiq',
-            location: 'cdOffice'
+            location: 'cdOffice',
+            iconColor: yellow,
+            offset: '75%'
           },
           {
             id: 4,
             name: 'VLST-D-2017 Mercedes-AMG E63 Sedan 4Matict',
             type: 'HFE',
             user: 'Track Testers Digital',
-            location: 'hfe'
+            location: 'hfe',
+            iconColor: red,
+            offset: '25%'
           }
-        ],
-        carColors: [
-          '#444444',
-          '#dd4b4b',
-          '#a6e726',
-          '#f0c517'
         ],
         activeId: 4,
         activeLocation: 2,
@@ -118,10 +126,10 @@
           }
         }
 
-        Data.getChromeTrims(queryObj)
-        .then((data) => {
-          console.log(data)
-        })
+//        Data.getChromeTrims(queryObj)
+//        .then((data) => {
+//          console.log(data)
+//        })
       },
       changeActiveLocation() {
         if (this.activeLocation >= this.locations.length) {
