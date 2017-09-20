@@ -15,6 +15,11 @@
         :clickable="true"
         :draggable="true"
         @click="center=m.position" />
+
+        <gmap-polyline
+         :draggable="false"
+         :editable="false"
+         :options="polylines.options" />
     </gmap-map>
 
   </div>
@@ -39,11 +44,30 @@
       VueGoogleMaps
     },
     data: function() {
+      var coordinates = {
+      	cdOffice : {lat: 42.2383894, lng: -83.7320719},
+      	kalamazoo : {lat: 42.2741366,lng: -85.6671881},
+      	provGrounds : {lat: 42.2743528, lng: -84.0537448}
+      };
+
       return {
-        center: {lat: 42.238389, lng: -83.729883},
+        center: coordinates.cdOffice,
         markers: [
-          {position: {lat: 42.238389, lng: -83.729883}}
-        ]
+          {position: coordinates.cdOffice},
+          {position: coordinates.kalamazoo},
+          {position: coordinates.provGrounds}
+        ],
+        polylines: {
+          options: {
+          	path: [
+          		coordinates.cdOffice, coordinates.kalamazoo,
+          		coordinates.cdOffice, coordinates.provGrounds
+          	],
+          	strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+          }
+        },
       }
     }
   }
