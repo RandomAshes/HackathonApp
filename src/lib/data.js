@@ -17,8 +17,6 @@ function getRequest(url) {
   })
 }
 
-let pattern = new RegExp('.*'+'Venture'+'.*', "i");
-
 export default {
   getChromeTrims(queryParams) {
     let url = `${chromeAPI}/api/styles`
