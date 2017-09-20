@@ -55,13 +55,14 @@
             name: 'VLST-P-2018 Honda Fit Sport 6MT 10Best',
             type: 'Lift-over / Step-in Height',
             user: 'Zeb Sadiq',
-            location: ''
+            location: 'cdOffice'
           },
           {
             id: 4,
             name: 'VLST-D-2017 Mercedes-AMG E63 Sedan 4Matict',
             type: 'HFE',
-            user: 'Track Testers Digital'
+            user: 'Track Testers Digital',
+            location: 'hfe'
           }
         ],
         carColors: [
