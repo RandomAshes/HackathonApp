@@ -25,6 +25,9 @@
   import DWMCMap from './components/MapComponent.vue'
   import Data from './lib/data'
   import VehicleInfo from "./components/VehicleInfoComponent.vue";
+
+  let vehicleCycleInterval;
+
   export default {
     name: 'app',
     components: {
@@ -127,7 +130,9 @@
       this.queryChromeTrim('Venture')
     },
     mounted() {
-
+      vehicleCycleInterval = setInterval(() => {
+        this.changeActiveLocation()
+      }, 5000)
     }
   }
 </script>
