@@ -13,8 +13,7 @@
         <vehicle-info
           v-for="(vehicle, i) in vehiclesInActiveLocation"
           :circleColor="carColors[i]"
-          :vehicle="vehicle"
-          :activeId="activeIndex == i">
+          :vehicle="vehicle">
         </vehicle-info>
       </div>
     </div>
