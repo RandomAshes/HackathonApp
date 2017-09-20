@@ -14,12 +14,14 @@
       <gmap-polyline
         :draggable="false"
         :editable="false"
+        :animate="true"
         :options="polylines.routeOptions" />
 
       <!--Polyline for track-->
       <gmap-polyline
         :draggable="false"
         :editable="false"
+        :animate="true"
         :options="polylines.trackOptions" />
 
     </gmap-map>
