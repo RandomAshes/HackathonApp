@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <dwmc-map />
+    <dwmc-map :currentLocation="locations[activeLocation].place" />
     <div class="info-bar">
 
       <img class="logo" src="./assets/DWMC.svg">
@@ -40,19 +40,22 @@
             id: 1,
             name: 'VLST-P-2018 Mercedes-Benz C300 Cabriolet 10Best',
             type: 'Test Track Vehicle',
-            user: 'Track Testers Digital'
+            user: 'Track Testers Digital',
+            location: 'provingGrounds'
           },
           {
             id: 2,
             name: 'VLST-P-2017 Chevrolet Camaro V6 6MT 1LE Coupe',
             type: 'Test Track Vehicle',
-            user: 'Track Testers Digital'
+            user: 'Track Testers Digital',
+            location: 'provingGrounds'
           },
           {
             id: 3,
             name: 'VLST-P-2018 Honda Fit Sport 6MT 10Best',
             type: 'Lift-over / Step-in Height',
-            user: 'Zeb Sadiq'
+            user: 'Zeb Sadiq',
+            location: ''
           },
           {
             id: 4,
@@ -71,17 +74,17 @@
         activeLocation: 2,
         locations: [
           {
-            place: 'ann-arbor',
+            place: 'cdOffice',
             name: 'Car and Driver HQ - Ann Arbor, MI',
-            types: ['Lift-over / Step-in Height']
+            types: ['Lift-over / Step-in Height'],
           },
           {
-            place: 'i-94',
+            place: 'hfe',
             name: 'I-94 Fuel Economy Tests',
             types: ['HFE']
           },
           {
-            place: 'chelsea-proving-grounds',
+            place: 'provingGrounds',
             name: 'Chrysler Proving Grounds Test',
             types: ['Test Track Vehicle']
           }
