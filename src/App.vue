@@ -3,16 +3,50 @@
     <h1>Dude, where's my</h1>
     <img src="http://www.vw.com/content/dam/vwcom/modelImages/blockquotes_logos/CARandDRIVER_logo.png">
     <div class="question-mark">?</div>
+
+    <gmap-map
+      class="map-container"
+      :center="center"
+      :zoom="10">
+      <gmap-marker
+        :key="index"
+        v-for="(m, index) in markers"
+        :position="m.position"
+        :clickable="true"
+        :draggable="true"
+        @click="center=m.position" />
+    </gmap-map>
+
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-  data: function() {
-    return {}
+  import Vue from 'vue'
+  import * as VueGoogleMaps from 'vue2-google-maps'
+
+  Vue.use(VueGoogleMaps, {
+    load: {
+      key: 'AIzaSyAcz63j0H3P3zD6UqKlghlRbHLXBWsQzjM',
+      libraries: 'places', // This is required if you use the Autocomplete plugin
+      // OR: libraries: 'places,drawing'
+      // OR: libraries: 'places,drawing,visualization'
+      // (as you require)
+    }
+  })
+  export default {
+    name: 'app',
+    components: {
+      VueGoogleMaps
+    },
+    data: function() {
+      return {
+        center: {lat: 42.238389, lng: -83.729883},
+        markers: [
+          {position: {lat: 42.238389, lng: -83.729883}}
+        ]
+      }
+    }
   }
-}
 </script>
 
 <style>
@@ -49,5 +83,11 @@ export default {
 
   a {
     color: #42b983;
+  }
+
+  .map-container {
+    height: 500px;
+    width: 500px;
+    margin: 2rem auto;
   }
 </style>
