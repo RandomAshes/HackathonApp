@@ -11,6 +11,7 @@
 
 <script>
   import DWMCMap from './components/MapComponent.vue'
+  import Data from './lib/data'
   export default {
     name: 'app',
     components: {
@@ -18,6 +19,29 @@
     },
     data: function() {
       return {}
+    },
+    methods: {
+      queryChromeTrim(string) {
+        const queryObj = {
+          fields: {
+            name: true
+          },
+          where: {
+            name: {
+              like: `^${string}.*`,
+              options: "i"
+            }
+          }
+        }
+
+        Data.getChromeTrims(queryObj)
+        .then((data) => {
+          console.log(data)
+        })
+      }
+    },
+    created() {
+      this.queryChromeTrim('Venture')
     }
   }
 </script>
