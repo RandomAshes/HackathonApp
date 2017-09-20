@@ -92,6 +92,12 @@
       	]
       };
 
+      var lineSymbol = {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 8,
+                strokeColor: '#393'
+              };
+
       return {
         center: coordinates.cdOffice,
         markers: [
@@ -104,7 +110,11 @@
           	path: coordinates.provingGroundsLoop,
           	strokeColor: "#FF0000",
             strokeOpacity: 1.0,
-            strokeWeight: 2
+            strokeWeight: 2,
+            icons: [{
+              icon: lineSymbol,
+              offset: '100%'
+            }],
           },
           routeOptions: {
           	path: [
@@ -112,7 +122,11 @@
           	],
             strokeColor: "#FF0000",
             strokeOpacity: 1.0,
-            strokeWeight: 2
+            strokeWeight: 2,
+            icons: [{
+              icon: lineSymbol,
+              offset: '100%'
+            }],
           }
         },
       }
