@@ -1,5 +1,5 @@
 <template>
-  <div class="vehicle-comp" v-bind:class="{active: isActive}">
+  <div class="vehicle-comp">
     <div class="circle-column">
       <div class="circle" :style="{ 'background-color': circleColor}"></div>
     </div>
@@ -21,10 +21,6 @@
       circleColor: {
         type: String,
         default: '#dd4b4b'
-      },
-      isActive: {
-        type: Boolean,
-        default: false
       }
     },
     computed: {}
