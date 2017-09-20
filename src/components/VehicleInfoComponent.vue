@@ -22,18 +22,12 @@
         type: String,
         default: '#dd4b4b'
       },
-      activeId: {
-        type: Number,
-        default: 0
+      isActive: {
+        type: Boolean,
+        default: false
       }
     },
-    computed: {
-      isActive: function() {
-        console.log(this.activeId)
-        console.log(this.vehicle.id)
-        return this.activeId === this.vehicle.id;
-      }
-    }
+    computed: {}
   }
 </script>
 <style scoped>
