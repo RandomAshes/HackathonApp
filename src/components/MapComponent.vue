@@ -1,6 +1,6 @@
 <template>
   <div class="map-container">
-    <gmap-map class="map" :center="center" :zoom="10" :options="{styles: styles}" >
+    <gmap-map class="map" :center="coordinates[currentLocation]" :zoom="currentZoom" :options="{styles: styles}" >
 
       <gmap-marker
         :key="index"
@@ -44,6 +44,12 @@
     name: 'dwmc-map',
     components: {
       VueGoogleMaps
+    },
+    props: {
+      currentLocation: {
+        type: String,
+        default: ''
+      }
     },
     data() {
       let coordinates = {
@@ -242,10 +248,11 @@
       };
 
       return {
+        coordinates: coordinates,
         center: coordinates.cdOffice,
         markers: [
           {position: coordinates.cdOffice},
-          {position: coordinates.kalamazoo},
+          {position: coordinates.hfe},
           {position: coordinates.provingGrounds}
         ],
         polylines: {
@@ -338,7 +345,14 @@
 					}
 				]
 			}
-		]
+		],
+        currentZoom: 10
+      }
+    },
+    computed: {
+      currentZoom() {
+        return (this.currentLocation === 'hfe')
+          ? 10 : 10;
       }
     }
   }
