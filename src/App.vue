@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <dwmc-map :currentLocation="locations[activeLocation]" :vehicles="vehicles" />
+    <dwmc-map ref="map" :currentLocation="locations[activeLocation]" :vehicles="vehicles" :currentZoom="currentZoom" />
     <div class="info-bar">
 
       <img class="logo" src="./assets/CDLogoDK.svg">
@@ -24,6 +24,7 @@
 <script>
   import DWMCMap from './components/MapComponent.vue'
   import Data from './lib/data'
+  import MapData from './lib/mapData.js'
   import VehicleInfo from "./components/VehicleInfoComponent.vue";
 
   let vehicleCycleInterval;
@@ -83,12 +84,13 @@
         ],
         activeId: 4,
         activeLocation: 2,
+        currentZoom: 14,
         locations: [
           {
             place: 'cdOffice',
             name: 'Car and Driver HQ - Ann Arbor, MI',
             types: ['Lift-over / Step-in Height'],
-            zoomLevel: 18
+            zoomLevel: 10
           },
           {
             place: 'hfe',
@@ -100,7 +102,7 @@
             place: 'provingGrounds',
             name: 'Chrysler Proving Grounds Test',
             types: ['Test Track Vehicle'],
-            zoomLevel: 14
+            zoomLevel: 10
           }
         ]
       }
@@ -134,13 +136,36 @@
 //        })
       },
       changeActiveLocation() {
-        if (this.activeLocation >= this.locations.length) {
+        if (this.activeLocation >= this.locations.length-1) {
           this.activeLocation = 0;
-          return;
+        }
+        else {
+		  this.activeLocation++;
         }
 
-        this.activeLocation++;
-      }
+   	    this.$refs.map.$children[0].panTo(MapData.coordinates[this.locations[this.activeLocation].place]);
+
+        //this.smoothZoom(this.locations[this.activeLocation].zoomLevel, this.$refs.map.$children[0].zoom);
+      },
+      smoothZoom(max, cnt) {
+      	console.log(max);
+      	console.log(cnt);
+
+		if (cnt >= max) {
+		  return;
+        }
+		else {
+		  z = google.maps.event.addListener(map, 'zoom_changed', function(event){
+		      google.maps.event.removeListener(z);
+			  smoothZoom(max, cnt + 1);
+          });
+		  setTimeout(function(){
+			this.currentZoom=cnt;
+            console.log('zoom set to' + cnt);
+          }, 80);
+
+        }
+	  }
     },
     created() {
       this.queryChromeTrim('Venture')
