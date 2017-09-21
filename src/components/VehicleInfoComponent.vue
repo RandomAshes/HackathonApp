@@ -5,8 +5,9 @@
     </div>
 
     <div class="text-column">
-      <span class="car">{{ vehicle.name }}</span>
-      <span class="driver">{{ vehicle.user }}</span>
+      <div class="car">{{ vehicle.name }}</div>
+      <div class="driver"><strong>Test Type:</strong> <em>{{ vehicle.type }}</em></div>
+      <div class="driver"><strong>Tester:</strong> <em>{{ vehicle.user }}</em></div>
     </div>
   </div>
 </template>
@@ -38,6 +39,7 @@
     border-radius: 50%;
     width: 1.2rem;
     height: 1.2rem;
+    margin-top: 0;
   }
 
   .circle-column,
@@ -47,7 +49,7 @@
   }
 
   .circle-column {
-    align-items: center;
+    padding-top: 1rem;
     padding-right: 1rem;
   }
 
