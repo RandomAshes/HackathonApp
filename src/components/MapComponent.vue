@@ -100,7 +100,8 @@
             fillOpacity: .9,
             strokeWeight: 0,
             scale: .5,
-	    rotation: 270
+            anchor: new google.maps.Point(16,16),
+	          rotation: 270
           }
         };
 
