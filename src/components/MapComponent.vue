@@ -2,7 +2,7 @@
   <div class="map-container">
     <gmap-map class="map"
       :center="coordinates[currentLocation.place]"
-      :zoom="currentLocation.zoomLevel"
+      :zoom="currentZoom"
       :options="{styles: mapStyles}" >
 
       <gmap-marker
@@ -60,6 +60,9 @@
       vehicles: {
         type: Array,
         default: () => []
+      },
+      currentZoom: {
+        type: Number
       }
     },
     data() {
