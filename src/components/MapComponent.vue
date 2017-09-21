@@ -100,7 +100,7 @@
             fillOpacity: .9,
             strokeWeight: 0,
             scale: .5,
-			      rotation: 270
+	    rotation: 270
           }
         };
 
