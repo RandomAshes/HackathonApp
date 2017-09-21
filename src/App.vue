@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <dwmc-map :currentLocation="locations[activeLocation]" :vehicles="vehicles" />
+    <dwmc-map ref="map" :currentLocation="locations[activeLocation]" :vehicles="vehicles" :currentZoom="currentZoom" />
     <div class="info-bar">
 
       <img class="logo" src="./assets/CDLogoDK.svg">
@@ -25,6 +25,7 @@
 <script>
   import DWMCMap from './components/MapComponent.vue'
   import Data from './lib/data'
+  import MapData from './lib/mapData.js'
   import VehicleInfo from "./components/VehicleInfoComponent.vue";
 
   let vehicleCycleInterval;
@@ -83,28 +84,29 @@
           }
         ],
         activeId: 4,
-        activeLocation: 0,
+        activeLocation: 2,
+        currentZoom: 14,
         locations: [
           {
             place: 'cdOffice',
             name: 'Car and Driver HQ',
             geoName: 'Ann Arbor, Michigan',
             types: ['Lift-over / Step-in Height'],
-            zoomLevel: 18
+            zoomLevel: 19
           },
           {
             place: 'hfe',
             name: 'I-94 Fuel Economy Tests',
             geoName: 'South Michigan',
             types: ['HFE'],
-            zoomLevel: 10
+            zoomLevel: 8
           },
           {
             place: 'provingGrounds',
             name: 'Chrysler Proving Grounds Test',
             geoName: 'Chelsea, Michigan',
             types: ['Test Track Vehicle'],
-            zoomLevel: 14
+            zoomLevel: 15
           }
         ]
       }
@@ -138,12 +140,39 @@
 //        })
       },
       changeActiveLocation() {
-        if (this.activeLocation == this.locations.length) {
+        if (this.activeLocation >= this.locations.length-1) {
           this.activeLocation = 0;
-          return;
+        }
+        else {
+		      this.activeLocation++;
         }
 
-        this.activeLocation++;
+        var $mapObject = this.$refs.map.$children[0].$mapObject;
+   	    this.$refs.map.$children[0].panTo(MapData.coordinates[this.locations[this.activeLocation].place]);
+
+        this.smoothZoom($mapObject, this.locations[this.activeLocation].zoomLevel, this.$refs.map.$children[0].zoom);
+      },
+      smoothZoom(map, target, current) {
+        var zoomingIn = target > current;
+        var incrementer = zoomingIn ? 1 : -1;
+
+        console.log('target zoom:  ', target)
+        console.log('current zoom: ', current)
+
+        if ((zoomingIn && (current >= target)) || (!zoomingIn && (current <= target))) {
+          return;
+        }
+        else {
+          var z = google.maps.event.addListener(map, 'zoom_changed', (event) => {
+            google.maps.event.removeListener(z);
+            this.smoothZoom(map, target, zoomingIn ? current + 1 : current -1);
+          });
+
+          setTimeout(() => {
+            map.setZoom(current);
+            console.log('zoom set to' + current);
+          }, 80);
+        }
       }
     },
     created() {
@@ -151,8 +180,8 @@
     },
     mounted() {
       vehicleCycleInterval = setInterval(() => {
-        this.changeActiveLocation()
-      }, 5000)
+        this.changeActiveLocation();
+      }, 7000)
     }
   }
 </script>
