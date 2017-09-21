@@ -1,8 +1,8 @@
 <template>
   <div class="map-container">
     <gmap-map class="map"
-      :center="coordinates[currentLocation.place]"
-      :zoom="currentLocation.zoomLevel"
+      :center="coordinates.provingGrounds"
+      :zoom=10
       :options="{styles: mapStyles}" >
 
       <gmap-marker
@@ -50,6 +50,7 @@
       VueGoogleMaps
     },
     props: {
+      //currentZoom: 14,
       currentLocation: {
         type: Object,
         default: {
@@ -100,8 +101,8 @@
             fillOpacity: .9,
             strokeWeight: 0,
             scale: .5,
-            anchor: new google.maps.Point(16,16),
-	          rotation: 270
+            anchor: {x:16, y:16},
+            rotation: 270
           }
         };
 
