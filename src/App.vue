@@ -92,21 +92,21 @@
             name: 'Car and Driver HQ',
             geoName: 'Ann Arbor, Michigan',
             types: ['Lift-over / Step-in Height'],
-            zoomLevel: 10
+            zoomLevel: 19
           },
           {
             place: 'hfe',
             name: 'I-94 Fuel Economy Tests',
             geoName: 'South Michigan',
             types: ['HFE'],
-            zoomLevel: 10
+            zoomLevel: 8
           },
           {
             place: 'provingGrounds',
             name: 'Chrysler Proving Grounds Test',
             geoName: 'Chelsea, Michigan',
             types: ['Test Track Vehicle'],
-            zoomLevel: 10
+            zoomLevel: 15
           }
         ]
       }
@@ -144,40 +144,44 @@
           this.activeLocation = 0;
         }
         else {
-		  this.activeLocation++;
+		      this.activeLocation++;
         }
 
+        var $mapObject = this.$refs.map.$children[0].$mapObject;
    	    this.$refs.map.$children[0].panTo(MapData.coordinates[this.locations[this.activeLocation].place]);
 
-        //this.smoothZoom(this.locations[this.activeLocation].zoomLevel, this.$refs.map.$children[0].zoom);
+        this.smoothZoom($mapObject, this.locations[this.activeLocation].zoomLevel, this.$refs.map.$children[0].zoom);
       },
-      smoothZoom(max, cnt) {
-      	console.log(max);
-      	console.log(cnt);
+      smoothZoom(map, target, current) {
+        var zoomingIn = target > current;
+        var incrementer = zoomingIn ? 1 : -1;
 
-		if (cnt >= max) {
-		  return;
+        console.log('target zoom:  ', target)
+        console.log('current zoom: ', current)
+
+        if ((zoomingIn && (current >= target)) || (!zoomingIn && (current <= target))) {
+          return;
         }
-		else {
-		  z = google.maps.event.addListener(map, 'zoom_changed', function(event){
-		      google.maps.event.removeListener(z);
-			  smoothZoom(max, cnt + 1);
+        else {
+          var z = google.maps.event.addListener(map, 'zoom_changed', (event) => {
+            google.maps.event.removeListener(z);
+            this.smoothZoom(map, target, zoomingIn ? current + 1 : current -1);
           });
-		  setTimeout(function(){
-			this.currentZoom=cnt;
-            console.log('zoom set to' + cnt);
-          }, 80);
 
+          setTimeout(() => {
+            map.setZoom(current);
+            console.log('zoom set to' + current);
+          }, 80);
         }
-	  }
+      }
     },
     created() {
       this.queryChromeTrim('Venture')
     },
     mounted() {
       vehicleCycleInterval = setInterval(() => {
-        this.changeActiveLocation()
-      }, 5000)
+        this.changeActiveLocation();
+      }, 7000)
     }
   }
 </script>

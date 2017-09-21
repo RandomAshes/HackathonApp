@@ -2,7 +2,7 @@
   <div class="map-container">
     <gmap-map class="map"
       :center="coordinates.provingGrounds"
-      :zoom=10
+      :zoom=12
       :options="{styles: mapStyles}" >
 
       <gmap-marker
