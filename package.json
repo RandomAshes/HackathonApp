@@ -11,7 +11,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "vue": "^2.3.3",
-    "vue2-google-maps": "git+https://github.com/jeebay/vue-google-maps.git#vue2"
+    "vue2-google-maps": "git+https://github.com/jeebay/vue-google-maps.git#11.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
