@@ -31,13 +31,13 @@
     display: flex;
     flex-direction: row;
     font-size: 16px;
-    margin: 1rem 0;
+    margin: 1.6rem 0;
   }
 
   .circle {
     border-radius: 50%;
-    width: 1rem;
-    height: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
   }
 
   .circle-column,
@@ -58,12 +58,13 @@
 
   .car {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
+    padding: 8px 0;
   }
 
   .driver {
     font-weight: lighter;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .active {
