@@ -84,7 +84,7 @@
           path: MapData.coordinates[type],
           strokeColor: '#1383b3',
           strokeOpacity: 1.0,
-          strokeWeight: 2,
+          strokeWeight: 4,
           icons: []
         }
       }
@@ -97,9 +97,10 @@
             path: MapData.carIconPath,
             strokeColor: data.iconColor,
             fillColor: data.iconColor,
-            fillOpacity: .6,
+            fillOpacity: .9,
             strokeWeight: 0,
-            scale: .08
+            scale: .5,
+			rotation: 270
           }
         };
 
