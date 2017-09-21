@@ -158,11 +158,11 @@
     padding: 0;
     margin: 0;
     color: #fff;
-    background: linear-gradient(110deg, #1383b3, #222, #000, #D64A4A);
+    background: linear-gradient(130deg, #E0E4E7, #000, #1383b3);
     background-size: 400% 400%;
-    -webkit-animation: Gradient 20s ease-in-out infinite;
-    -moz-animation: Gradient 20s ease-in-out infinite;
-    animation: Gradient 20s ease-in-out infinite;
+    -webkit-animation: Gradient 30s ease-in-out infinite;
+    -moz-animation: Gradient 30s ease-in-out infinite;
+    animation: Gradient 30s ease-in-out infinite;
   }
 
   @-webkit-keyframes Gradient {
@@ -209,7 +209,6 @@
     color: #2c3e50;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
   }
 
   .info-bar {
@@ -220,11 +219,11 @@
   }
 
   .logo {
-    width: 80%;
+    width: 60%;
   }
 
   .vehicles {
-    margin-top: 6rem;
+    margin-top: 3rem;
   }
 
   h1,
@@ -237,7 +236,8 @@
     font-weight: 100;
     text-align: left;
     font-size: 32px;
-    margin: 48px 0;
+    padding: 48px 0 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
   }
 
   ul {
