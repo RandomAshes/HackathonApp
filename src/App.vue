@@ -36,9 +36,11 @@
     },
     data: function() {
      const black = '#444444'
-     const red = '#dd4b4b'
-     const green = '#a6e726'
-     const yellow = '#f0c517'
+     const red = '#E84343'
+     const green = '#79A720'
+     const yellow = '#EAC515'
+	 const blue = '#0D5A7B'
+	 const teal = '#50E3C2'
 
       return {
         vehicles: [

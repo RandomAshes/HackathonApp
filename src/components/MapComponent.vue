@@ -24,6 +24,12 @@
         :animate="true"
         :options="polylines.provingGroundsOptions" />
 
+      <!--Polyline for office-->
+      <gmap-polyline
+        :editable="false"
+        :animate="true"
+        :options="polylines.cdOfficeOptions" />
+
     </gmap-map>
   </div>
 </template>
@@ -66,7 +72,8 @@
         ],
         polylines: {
           provingGroundsOptions: this.setOptions('provingGroundsLoop'),
-          hfeOptions: this.setOptions('hfeStretch')
+          hfeOptions: this.setOptions('hfeStretch'),
+          cdOfficeOptions: this.setOptions('cdOfficeLoop')
         },
         mapStyles: MapData.styles
       }
@@ -75,7 +82,7 @@
       setOptions(type) {
         return {
           path: MapData.coordinates[type],
-          strokeColor: '#FF0000',
+          strokeColor: '#1383b3',
           strokeOpacity: 1.0,
           strokeWeight: 2,
           icons: []
@@ -92,7 +99,7 @@
             fillColor: data.iconColor,
             fillOpacity: .6,
             strokeWeight: 0,
-            scale: .1
+            scale: .08
           }
         };
 
@@ -100,7 +107,9 @@
           this.polylines.provingGroundsOptions.icons.push(iconObj)
         } else if (data.location === 'hfe') {
           this.polylines.hfeOptions.icons.push(iconObj)
-        }
+        } else if (data.location === 'cdOffice') {
+			this.polylines.cdOfficeOptions.icons.push(iconObj)
+		}
       })
     }
   }
