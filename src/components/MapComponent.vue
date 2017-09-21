@@ -100,7 +100,7 @@
             fillOpacity: .9,
             strokeWeight: 0,
             scale: .5,
-			rotation: 270
+			      rotation: 270
           }
         };
 
@@ -109,8 +109,8 @@
         } else if (data.location === 'hfe') {
           this.polylines.hfeOptions.icons.push(iconObj)
         } else if (data.location === 'cdOffice') {
-			this.polylines.cdOfficeOptions.icons.push(iconObj)
-		}
+          this.polylines.cdOfficeOptions.icons.push(iconObj)
+        }
       })
     }
   }
