@@ -3,7 +3,7 @@
     <dwmc-map :currentLocation="locations[activeLocation]" :vehicles="vehicles" />
     <div class="info-bar">
 
-      <img class="logo" src="./assets/DWMC.svg">
+      <img class="logo" src="./assets/CDLogoDK.svg">
 
       <div class="vehicles">
         <div class="locations">
@@ -157,7 +157,48 @@
   body {
     padding: 0;
     margin: 0;
-    background-color: #333;
+    color: #fff;
+    background: linear-gradient(110deg, #1383b3, #222, #000, #D64A4A);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 20s ease-in-out infinite;
+    -moz-animation: Gradient 20s ease-in-out infinite;
+    animation: Gradient 20s ease-in-out infinite;
+  }
+
+  @-webkit-keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+
+  @-moz-keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
+  }
+
+  @keyframes Gradient {
+    0% {
+      background-position: 0% 50%
+    }
+    50% {
+      background-position: 100% 50%
+    }
+    100% {
+      background-position: 0% 50%
+    }
   }
 
   #app {
@@ -184,10 +225,6 @@
 
   .vehicles {
     margin-top: 6rem;
-  }
-
-  .map-container {
-    border-right: .5rem solid #0083b3;
   }
 
   h1,
