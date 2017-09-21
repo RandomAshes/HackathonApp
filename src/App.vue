@@ -10,6 +10,7 @@
 
         </div>
         <h2>{{locations[activeLocation].name}}</h2>
+        <h3>{{locations[activeLocation].geoName}}</h3>
         <vehicle-info
           v-for="(vehicle, i) in vehiclesInActiveLocation"
           :key="vehicle.id"
@@ -82,23 +83,26 @@
           }
         ],
         activeId: 4,
-        activeLocation: 2,
+        activeLocation: 0,
         locations: [
           {
             place: 'cdOffice',
-            name: 'Car and Driver HQ - Ann Arbor, MI',
+            name: 'Car and Driver HQ',
+            geoName: 'Ann Arbor, Michigan',
             types: ['Lift-over / Step-in Height'],
             zoomLevel: 18
           },
           {
             place: 'hfe',
             name: 'I-94 Fuel Economy Tests',
+            geoName: 'South Michigan',
             types: ['HFE'],
             zoomLevel: 10
           },
           {
             place: 'provingGrounds',
             name: 'Chrysler Proving Grounds Test',
+            geoName: 'Chelsea, Michigan',
             types: ['Test Track Vehicle'],
             zoomLevel: 14
           }
@@ -134,7 +138,7 @@
 //        })
       },
       changeActiveLocation() {
-        if (this.activeLocation >= this.locations.length) {
+        if (this.activeLocation == this.locations.length) {
           this.activeLocation = 0;
           return;
         }
@@ -236,8 +240,19 @@
     font-weight: 100;
     text-align: left;
     font-size: 32px;
-    padding: 48px 0 24px;
+    padding: 48px 0 0 0;
     border-top: 1px solid rgba(255, 255, 255, 0.10);
+    margin: 0
+  }
+
+  h3 {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font-style: italic;
+    color: lightgray;
+    font-variant-caps: all-small-caps;
+    font-size: 24px;
   }
 
   ul {
