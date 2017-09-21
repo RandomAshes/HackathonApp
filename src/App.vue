@@ -157,11 +157,11 @@
   body {
     padding: 0;
     margin: 0;
-    background-color: #666;
+    background-color: #333;
   }
 
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -173,13 +173,13 @@
 
   .info-bar {
     color: white;
-    width: auto;
     height: 100%;
+    width: 100%;
     padding: 3rem;
   }
 
   .logo {
-    width: 100%;
+    width: 80%;
   }
 
   .vehicles {
@@ -194,6 +194,13 @@
   .question-mark {
     font-weight: bold;
     font-size: x-large;
+  }
+
+  h2 {
+    font-weight: 100;
+    text-align: left;
+    font-size: 32px;
+    margin: 48px 0;
   }
 
   ul {
