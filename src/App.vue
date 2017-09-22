@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <dwmc-map :currentLocation="locations[activeLocation]" :vehicles="vehicles" />
+    <dwmc-map ref="map" :currentLocation="locations[activeLocation]" :vehicles="vehicles" :currentZoom="currentZoom" />
     <div class="info-bar">
 
       <img class="logo" src="./assets/CDLogoDK.svg">
@@ -26,6 +26,7 @@
   import DWMCMap from './components/MapComponent.vue'
   import Data from './lib/data'
   import VehicleInfo from "./components/VehicleInfoComponent.vue";
+  import MapData from './lib/mapData.js'
 
   let vehicleCycleInterval;
 
@@ -110,28 +111,29 @@
           }
         ],
         activeId: 4,
-        activeLocation: 0,
+        activeLocation: 2,
+        currentZoom: 15,
         locations: [
           {
             place: 'cdOffice',
             name: 'Car and Driver HQ',
             geoName: 'Ann Arbor, Michigan',
             types: ['Lift-over / Step-in Height'],
-            zoomLevel: 18
+            zoomLevel: 19
           },
           {
             place: 'hfe',
             name: 'I-94 Fuel Economy Tests',
             geoName: 'South Michigan',
             types: ['HFE'],
-            zoomLevel: 10
+            zoomLevel: 9
           },
           {
             place: 'provingGrounds',
             name: 'Chrysler Proving Grounds Test',
             geoName: 'Chelsea, Michigan',
             types: ['Test Track Vehicle'],
-            zoomLevel: 14
+            zoomLevel: 15
           }
         ]
       }
@@ -165,12 +167,66 @@
 //        })
       },
       changeActiveLocation() {
-        if (this.activeLocation == this.locations.length-1) {
+        if (this.activeLocation >= this.locations.length-1) {
           this.activeLocation = 0;
-          return;
-        }
+		}
+		else {
+	      this.activeLocation++;
+		}
 
-        this.activeLocation++;
+		// if the map ref is defined, lets move stuff!
+		if(typeof this.$refs.map.$children[0] !== undefined){
+        	// define map object
+			var $mapObject = this.$refs.map.$children[0].$mapObject;
+
+			// Zoom out really far and then call the pan method
+			this.smoothZoom($mapObject, 9, $mapObject.zoom);
+        }
+	  },
+	  smoothPan(map) {
+		var _this = this;
+
+		// Lets pan the screen to the correct location, and then after the panning we'll zoom it.
+      	map.panTo(MapData.coordinates[this.locations[this.activeLocation].place]);
+		  setTimeout(function(){
+		  	  // Zoom back into the current location
+			  _this.smoothZoom(map, _this.locations[_this.activeLocation].zoomLevel, map.zoom);
+		  }, 500);
+      },
+	  smoothZoom(map, target, current) {
+	    var zoomingIn = target > current;
+	    var incrementer = zoomingIn ? 1 : -1;
+	    var _this = this;
+
+		//console.log('target zoom:  ', target)
+	    //console.log('current zoom: ', current)
+
+        // Check to see if we are fully zoomed in/out
+	    if ((zoomingIn && (current >= target)) || (!zoomingIn && (current <= target))) {
+
+	    	// If we zoomed out lets pan as needed
+	    	if(!zoomingIn) {
+				setTimeout(function(){
+					console.log('current zoom:', current);
+					_this.smoothPan(map);
+				}, 400);
+            }
+
+            // Exit
+			return;
+        }
+        else {
+	      // We are in the middle of zooming, lets update zoom level as needed.
+		  var z = google.maps.event.addListener(map, 'zoom_changed', (event) => {
+		    google.maps.event.removeListener(z);
+		    this.smoothZoom(map, target, zoomingIn ? current + 1 : current -1);
+		  });
+
+		  // Set timeout and zoom
+          setTimeout(() => {
+            map.setZoom(current);
+          }, 200);
+		}
       }
     },
     created() {
@@ -178,8 +234,8 @@
     },
     mounted() {
       vehicleCycleInterval = setInterval(() => {
-        this.changeActiveLocation()
-      }, 5000)
+        this.changeActiveLocation();
+      }, 15000)
     }
   }
 </script>
