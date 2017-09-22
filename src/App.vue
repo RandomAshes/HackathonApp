@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <dwmc-map :currentLocation="locations[activeLocation]" :vehicles="vehicles" />
+    <dwmc-map
+      ref="map"
+      :currentLocation="locations[activeLocation]"
+      :vehicles="vehicles"
+      :currentZoom="currentZoom" />
+
     <div class="info-bar">
 
       <img class="logo" src="./assets/CDLogoDK.svg">
@@ -25,9 +30,11 @@
 <script>
   import DWMCMap from './components/MapComponent.vue'
   import Data from './lib/data'
-  import VehicleInfo from "./components/VehicleInfoComponent.vue";
+  import VehicleInfo from './components/VehicleInfoComponent.vue'
+  import MapData from './lib/mapData.js'
 
   let vehicleCycleInterval;
+  let zoomInterval;
 
   export default {
     name: 'app',
@@ -40,8 +47,8 @@
      const red = '#E84343'
      const green = '#79A720'
      const yellow = '#EAC515'
-	 const blue = '#0D5A7B'
-	 const teal = '#50E3C2'
+     const blue = '#0D5A7B'
+     const teal = '#50E3C2'
 
       return {
         vehicles: [
@@ -84,6 +91,7 @@
         ],
         activeId: 4,
         activeLocation: 0,
+        currentZoom: 14,
         locations: [
           {
             place: 'cdOffice',
@@ -138,18 +146,32 @@
 //        })
       },
       changeActiveLocation() {
-        if (this.activeLocation == this.locations.length) {
+        if (this.activeLocation === this.locations.length-1) {
           this.activeLocation = 0;
-          return;
+        } else {
+          this.activeLocation++;
         }
 
-        this.activeLocation++;
+        clearInterval(zoomInterval);
+        this.currentZoom = this.locations[this.activeLocation].zoomLevel - 2
+
+        this.$refs.map.$children[0].panTo(MapData.coordinates[this.locations[this.activeLocation].place]);
+
+        zoomInterval = setInterval(() => {
+          if(this.currentZoom < this.locations[this.activeLocation].zoomLevel) {
+            this.currentZoom++;
+          } else {
+            clearInterval(zoomInterval)
+          }
+        }, 120)
       }
     },
     created() {
       this.queryChromeTrim('Venture')
     },
     mounted() {
+      this.currentZoom = this.locations[this.activeLocation].zoomLevel
+
       vehicleCycleInterval = setInterval(() => {
         this.changeActiveLocation()
       }, 5000)
