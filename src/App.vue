@@ -6,10 +6,7 @@
 
       <img class="logo" src="./assets/CDLogoDK.svg" @click="toggleStreetView()">
       <div>{{todaysDate}}</div>
-      <div class="vehicles">
-        <div class="locations">
-
-        </div>
+      <div class="vehicles" v-show="!streetViewEnabled">
         <h2>{{locations[activeLocation].name}}</h2>
         <h3>{{locations[activeLocation].geoName}}</h3>
         <vehicle-info
@@ -19,6 +16,16 @@
           :vehicle="vehicle">
         </vehicle-info>
       </div>
+      <div class="vehicles" v-show="streetViewEnabled">
+        <h2>Car and Driver HQ</h2>
+        <h3>Ann Arbor, MI</h3>
+        <vehicle-info
+            :key="1"
+            :circleColor="'#E84343'"
+            :vehicle="{ name: '1983 Samuel Conant', type: 'Cellular Strength Test'}">
+        </vehicle-info>
+      </div>
+
     </div>
   </div>
 </template>
