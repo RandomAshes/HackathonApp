@@ -76,10 +76,37 @@
             id: 4,
             name: '2017 Mercedes-AMG E63 Sedan 4Matict',
             type: 'HFE',
-            user: 'Track Testers Digital',
+            user: 'Max Mortimer',
             location: 'hfe',
             iconColor: red,
             offset: '25%'
+          },
+          {
+            id: 5,
+            name: '2016 Mazda CX-9 Project',
+            type: 'Lift-over / Step-in Height',
+            user: 'Tech Assistants',
+            location: 'cdOffice',
+            iconColor: green,
+            offset: '25%'
+          },
+          {
+            id: 6,
+            name: '2018 Honda Accord 1.5T 10Best Project',
+            type: 'HFE',
+            user: 'Dani Safi',
+            location: 'hfe',
+            iconColor: black,
+            offset: '50%'
+          },
+          {
+            id: 6,
+            name: '2018 Honda Accord 2.0T 10AT 10Best Home',
+            type: 'Test Track Vehicle',
+            user: 'Track Testers Digital',
+            location: 'provingGrounds',
+            iconColor: red,
+            offset: '75%'
           }
         ],
         activeId: 4,
