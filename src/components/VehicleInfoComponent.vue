@@ -6,8 +6,8 @@
 
     <div class="text-column">
       <div class="car">{{ vehicle.name }}</div>
-      <div class="driver"><strong>Test Type:</strong> <em>{{ vehicle.type }}</em></div>
-      <div class="driver"><strong>Tester:</strong> <em>{{ vehicle.user }}</em></div>
+      <div class="driver"><strong>Test Type:</strong> {{ vehicle.type }}</div>
+      <div class="driver"><strong>Tester:</strong> {{ vehicle.user }}</div>
     </div>
   </div>
 </template>
@@ -65,7 +65,7 @@
   }
 
   .driver {
-    font-weight: lighter;
+    font-weight: 100;
     font-size: 16px;
   }
 

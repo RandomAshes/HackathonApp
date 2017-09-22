@@ -47,7 +47,7 @@
         vehicles: [
           {
             id: 1,
-            name: 'VLST-P-2018 Mercedes-Benz C300 Cabriolet 10Best',
+            name: '2018 Mercedes-Benz C300 Cabriolet 10Best',
             type: 'Test Track Vehicle',
             user: 'Track Testers Digital',
             location: 'provingGrounds',
@@ -56,7 +56,7 @@
           },
           {
             id: 2,
-            name: 'VLST-P-2017 Chevrolet Camaro V6 6MT 1LE Coupe',
+            name: '2017 Chevrolet Camaro V6 6MT 1LE Coupe',
             type: 'Test Track Vehicle',
             user: 'Track Testers Digital',
             location: 'provingGrounds',
@@ -65,7 +65,7 @@
           },
           {
             id: 3,
-            name: 'VLST-P-2018 Honda Fit Sport 6MT 10Best',
+            name: '2018 Honda Fit Sport 6MT 10Best',
             type: 'Lift-over / Step-in Height',
             user: 'Zeb Sadiq',
             location: 'cdOffice',
@@ -74,7 +74,7 @@
           },
           {
             id: 4,
-            name: 'VLST-D-2017 Mercedes-AMG E63 Sedan 4Matict',
+            name: '2017 Mercedes-AMG E63 Sedan 4Matict',
             type: 'HFE',
             user: 'Track Testers Digital',
             location: 'hfe',
@@ -138,7 +138,7 @@
 //        })
       },
       changeActiveLocation() {
-        if (this.activeLocation == this.locations.length) {
+        if (this.activeLocation == this.locations.length-1) {
           this.activeLocation = 0;
           return;
         }
