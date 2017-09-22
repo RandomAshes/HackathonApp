@@ -99,7 +99,7 @@
             fillColor: data.iconColor,
             fillOpacity: .9,
             strokeWeight: 0,
-            scale: .5,
+            scale: .4,
             anchor: {x: 16, y:16},
 	          rotation: 270
           }
