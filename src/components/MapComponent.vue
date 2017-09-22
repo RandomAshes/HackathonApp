@@ -1,8 +1,8 @@
 <template>
   <div class="map-container">
     <gmap-map class="map"
-      :center="coordinates[currentLocation.place]"
-      :zoom="currentLocation.zoomLevel"
+      :center="coordinates.provingGrounds"
+      :zoom="15"
       :options="{styles: mapStyles}" >
 
       <gmap-marker
