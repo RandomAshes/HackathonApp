@@ -7,7 +7,7 @@
     <div class="text-column">
       <div class="car">{{ vehicle.name }}</div>
       <div class="driver"><strong>Test Type:</strong> {{ vehicle.type }}</div>
-      <div class="driver"><strong>Tester:</strong> {{ vehicle.user }}</div>
+      <div class="driver" v-if="vehicle.user"><strong>Tester:</strong> {{ vehicle.user }}</div>
     </div>
   </div>
 </template>
