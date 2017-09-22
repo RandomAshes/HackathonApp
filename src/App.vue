@@ -1,9 +1,10 @@
 <template>
   <div id="app">
+    <img src="./assets/street-view.png" class="street-view" v-if="streetViewEnabled" />
     <dwmc-map :currentLocation="locations[activeLocation]" :vehicles="vehicles" />
     <div class="info-bar">
 
-      <img class="logo" src="./assets/CDLogoDK.svg">
+      <img class="logo" src="./assets/CDLogoDK.svg" @click="toggleStreetView()">
       <div>{{todaysDate}}</div>
       <div class="vehicles">
         <div class="locations">
@@ -43,10 +44,12 @@
 	 const blue = '#0D5A7B'
 	 const teal = '#50E3C2'
 
+
       const dt = new Date();
 
       return {
         todaysDate: 'September ' + dt.getDate() + ', ' + dt.getFullYear(),
+        streetViewEnabled: false,
         vehicles: [
           {
             id: 1,
@@ -174,6 +177,9 @@
         }
 
         this.activeLocation++;
+      },
+      toggleStreetView() {
+        this.streetViewEnabled = !this.streetViewEnabled
       }
     },
     created() {
@@ -307,6 +313,7 @@
     .logo {
       width: 25%;
       margin-right: 3rem;
+      cursor: pointer;
     }
 
     .info-bar {
@@ -318,6 +325,29 @@
 
     .vehicles {
       margin: 0;
+    }
+  }
+
+  .street-view {
+    height: 100vh;
+    width: 75vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+  }
+
+  @media screen and (max-width: 100rem) {
+    .street-view {
+      height: 100vh;
+      width: 65vw;
+    }
+  }
+
+  @media screen and (max-width: 53.125rem) {
+    .street-view {
+      height: 100vh;
+      width: 100vw;
     }
   }
 </style>
