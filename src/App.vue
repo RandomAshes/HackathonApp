@@ -4,7 +4,7 @@
     <div class="info-bar">
 
       <img class="logo" src="./assets/CDLogoDK.svg">
-
+      <div>{{todaysDate}}</div>
       <div class="vehicles">
         <div class="locations">
 
@@ -43,12 +43,15 @@
 	 const blue = '#0D5A7B'
 	 const teal = '#50E3C2'
 
+      const dt = new Date();
+
       return {
+        todaysDate: 'September ' + dt.getDate() + ', ' + dt.getFullYear(),
         vehicles: [
           {
             id: 1,
-            name: '2018 Mercedes-Benz C300 Cabriolet 10Best',
-            type: 'Test Track Vehicle',
+            name: '2018 Mercedes-Benz C300 Cabriolet',
+            type: 'Test Track',
             user: 'Track Testers Digital',
             location: 'provingGrounds',
             iconColor: black,
@@ -57,7 +60,7 @@
           {
             id: 2,
             name: '2017 Chevrolet Camaro V6 6MT 1LE Coupe',
-            type: 'Test Track Vehicle',
+            type: 'Test Track',
             user: 'Track Testers Digital',
             location: 'provingGrounds',
             iconColor: green,
@@ -65,7 +68,7 @@
           },
           {
             id: 3,
-            name: '2018 Honda Fit Sport 6MT 10Best',
+            name: '2018 Honda Fit Sport 6MT',
             type: 'Lift-over / Step-in Height',
             user: 'Zeb Sadiq',
             location: 'cdOffice',
@@ -74,7 +77,7 @@
           },
           {
             id: 4,
-            name: '2017 Mercedes-AMG E63 Sedan 4Matict',
+            name: '2017 Mercedes-AMG E63 Sedan 4Matic',
             type: 'HFE',
             user: 'Max Mortimer',
             location: 'hfe',
@@ -83,7 +86,7 @@
           },
           {
             id: 5,
-            name: '2016 Mazda CX-9 Project',
+            name: '2016 Mazda CX-9',
             type: 'Lift-over / Step-in Height',
             user: 'Tech Assistants',
             location: 'cdOffice',
@@ -92,7 +95,7 @@
           },
           {
             id: 6,
-            name: '2018 Honda Accord 1.5T 10Best Project',
+            name: '2018 Honda Accord 1.5T',
             type: 'HFE',
             user: 'Dani Safi',
             location: 'hfe',
@@ -101,8 +104,8 @@
           },
           {
             id: 6,
-            name: '2018 Honda Accord 2.0T 10AT 10Best Home',
-            type: 'Test Track Vehicle',
+            name: '2018 Honda Accord 2.0T 10AT',
+            type: 'Test Track',
             user: 'Track Testers Digital',
             location: 'provingGrounds',
             iconColor: red,
@@ -121,16 +124,16 @@
           },
           {
             place: 'hfe',
-            name: 'I-94 Fuel Economy Tests',
-            geoName: 'South Michigan',
+            name: 'I-94 Highway Fuel Economy',
+            geoName: 'Michigan',
             types: ['HFE'],
             zoomLevel: 10
           },
           {
             place: 'provingGrounds',
-            name: 'Chrysler Proving Grounds Test',
+            name: 'Chrysler Proving Grounds',
             geoName: 'Chelsea, Michigan',
-            types: ['Test Track Vehicle'],
+            types: ['Test Track'],
             zoomLevel: 14
           }
         ]
@@ -179,7 +182,7 @@
     mounted() {
       vehicleCycleInterval = setInterval(() => {
         this.changeActiveLocation()
-      }, 5000)
+      }, 8000)
     }
   }
 </script>
